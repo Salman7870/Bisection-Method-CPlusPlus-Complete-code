@@ -1,0 +1,47 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+// c.f(x)= x^4  +x^2-80  (a,b)=()                  
+float calculation(float x)
+{
+	float f;
+	f= (pow(x,4)) + (pow(x,2)) - 80;
+	return f;
+}
+int main()
+{
+	float a,c,b;
+	//Intervals (a,b)=(0,1)
+	a=2;
+	cout<<calculation(a)<<endl;	
+	b=3;
+	cout<<calculation(b)<<endl;
+	
+	if(calculation(a) * calculation(b) >= 0)
+	{
+		cout<<"Assumptions not satisfied..."<<endl;		
+	}
+   
+    float e= (b-a)/2;//error
+	
+	while(e>=0.0005)
+	{
+		e= (b-a)/2;
+		c = (a+b)/2; //formula for c
+  	 if (calculation(c) > 0 && calculation(a) < 0|| calculation(c) < 0 && calculation(a) > 0 ) 
+        {
+        	//f(a).f(b)>0
+		    b = c;
+		}
+		else 
+        {
+        	//f(a).f(b)<0
+		    a = c;		    
+		}
+       
+        cout<<a<<" |  "<<b<<"  | "<<calculation(a)<<" |  "<< calculation(b)<<" |  "<<c<<" |  "<<calculation(c)<<" |  "<<e;
+		cout<<endl;
+	}	
+	
+	cout<<"\nReq. Root: "<<c<<endl;
+}
